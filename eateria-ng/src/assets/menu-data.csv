@@ -1,0 +1,36 @@
+﻿Category,Name,Description,Price,Calories,Customer Rating
+Appetizers,BRICK OVEN WINGS,"8 Jumbo party wings marinated and brick oven roasted, fried crispy and tossed in your choice of mild, hot, barbecue, honey mustard or garlic parmesan. Includes bleu cheese or ranch and celery",11.5,699,4.2
+Appetizers,FRIED MOZZARELLA WEDGES,"Three Hand cut fresh mozzarella, breaded and fried golden brown, served with a side of marinara sauce",9.5,600,4.6
+Appetizers,STACKED EGGPLANT,"Breaded eggplant, fresh mozzarella, ricotta cheese, lightly drizzled with balsamic vinaigrette, oven roasted and served with a side of marinara sauce",11.5,150,3.9
+Appetizers,FRIED ZUCCHINI CHIPS,"Three Fresh zucchini batter dipped, then fried to a golden crisp, served with a side of marinara sauce",8.5,220,4
+Salads,CLIFF SALAD,"Romaine, grilled chicken, penne pasta, hard-boiled egg and baked croutons with your choice of dressing",12.5,199,4.1
+Salads,CHEF SALAD,"Mixed lettuce, ham, turkey, American cheese, chopped tomato, hard-boiled egg & red onions with your choice of dressing",12.5,125,4.5
+Salads,GARDEN SALAD,"Mixed greens, tomatoes, cucumbers, carrots and red onions with your choice of dressing",9,100,3.9
+Salads,CAESAR SALAD,"Romaine, shaved parmesan & baked croutons with Caesar dressing",9,280,3.8
+Add Ons,Add Grilled Chicken,Slices of chargrilled chicken breast,5,120,n/a
+Add Ons,Add Shrimp,Three medium grilled shrimp,6,120,n/a
+Specialties,LASAGNA,"Noodles stuffed with cheese, topped with marinara sauce and mozzarella cheese",14.5,600,4.1
+Specialties,EGGPLANT ROLLATINI,"Lightly breaded eggplant cutlets rolled and stuffed with ricotta and mozzarella, topped in a marinara sauce",15.5,650,4.3
+Specialties,HOMEMADE MANICOTTI,"Stuffed with ricotta cheese, topped with tomato sauce and mozzarella cheese",15.5,750,4.9
+Specialties,STUFFED SHELLS,"With ricotta cheese, topped with tomato sauce and mozzarella cheese",15.5,550,4.8
+Specialties,BAKED GNOCCHI,"With tomato sauce, topped with mozzarella cheese",15.5,450,4.6
+Specialties,EGGPLANT PARMIGIANA,"Topped with marinara sauce, melted mozzarella and parmesan sauce. Includes pasta.",16.5,700,4.5
+Chicken,FRANCESE,Egg battered and sauteed in a lemon butter sauce,18.5,425,4.9
+Chicken,FLORENTINE,"Sauteed in a garlic, white wine and lemon sauce, topped with spinach and mozzarella cheese",18.5,525,4.3
+Chicken,MARSALA,Sauteed with fresh mushrooms in a marsala wine sauce,18.5,450,4.1
+Chicken,PARMIGIANA,"Topped with marinara sauce, melted mozzarella and parmesan cheese",18.5,700,4
+Pizza,MARGHERITA,"12"" Tomato sauce, fresh mozzarella, parmigiana, basil",13.5,900,4.2
+Pizza,BRUSCHETTA,"12"" Tomatoes, fresh mozzarella, red onions, basil, oil and oregano with balsamic glaze",13.5,875,4.9
+Pizza,GLUTEN FREE,10” pre-made gluten free pizza shell,13.5,450,3.8
+Pizza,ROASTED VEGGIE,"12"" Tomato sauce, zucchini, eggplant, mushrooms, tomatoes, onions, roasted red peppers",13.5,450,4.1
+Pizza,THE WORKS,"12"" Tomato sauce, pepperoni, sausage, mushrooms, green peppers, onions, mozzarella cheese",15,1400,5
+Pizza,CHEESESTEAK PIZZA,"12"" Mozzarella cheese & american cheese",15,1100,4.9
+Sandwiches,HOT ROAST BEEF,"On a 12"" long Italian roll with sharpe provolone cheese",10.5,850,4.1
+Sandwiches,ROAST PORK,"On a 12"" long Italian roll with sharpe provolone cheese",10.5,750,4.1
+Sandwiches,"SAUSAGE, PEPPERS & ONIONS","On a 12"" long Italian roll with marinara sauce",10.5,850,4.3
+Sandwiches,CHEESE STEAK SPECIAL,"On a 12"" long Italian roll with mushrooms, green peppers, fried onions and sharp provolone cheese",12.5,950,4.2
+Beverages,FOUNTAIN DRINK,"Coke, Diet Coke, Sprite, Root Beer, Dr. Pepper, Cherry Coke, Lemonade, Unsweetened Iced Tea, Orange Fanta, Apple Juice",2.25,175,n/a
+Beverages,COFFEE / HOT TEA,,1.95,25,n/a
+Desserts,SLICE OF CHEESECAKE,,7,don't ask,4.7
+Desserts,CANNOLIS ,Two,5,425,4.4
+Desserts,SLICE OF APPLE PIE, ,7,375,3.7

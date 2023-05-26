@@ -1,0 +1,13 @@
+{
+  "name": "eateria-static",
+  "version": "1.0.0",
+  "description": "static 11ty site for eateria menu",
+  "scripts": {
+    "start": "npx @11ty/eleventy --serve",
+    "build": "npx @11ty/eleventy"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^2.0.1",
+    "@11ty/eleventy-fetch": "^4.0.0"
+  }
+}

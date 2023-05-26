@@ -1,0 +1,36 @@
+<a href="#" (click)="select($event)" class="card h-100" (mouseenter)="hovered = true" (mouseleave)="hovered = false" [ngClass]="{'mdc-elevation--z4': !hovered, 'mdc-elevation--z12': hovered}">
+    <!-- <div class="card-header">
+        {{ item.category }}
+    </div> -->
+    <!-- Sale badge-->
+    <!-- <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">{{ i.category }}</div> -->
+    <!-- Product image-->
+    <img class="card-img-top" [src]="item.photo?.url || 'https://dummyimage.com/450x300/dee2e6/6c757d.jpg'" [alt]="item.photo?.alt || 'no image'" />
+    <!-- Product details-->
+    <div class="card-body p-4">
+        <div class="text-center">
+            <!-- Product name-->
+            <h5 class="fw-bolder">{{ item.name }}</h5>
+            <!-- Product reviews-->
+            <star-rating [starType]="'svg'" [rating]="item.customerRating||0" [title]="item.customerRating"></star-rating>
+            <!-- <div class="d-flex justify-content-center small text-warning mb-2" [title]="item.customerRating">
+                <div class="bi-star-fill"></div>
+                <div class="bi-star-fill"></div>
+                <div class="bi-star-fill"></div>
+                <div class="bi-star-fill"></div>
+                <div class="bi-star-fill"></div>
+            </div> -->
+            <!-- Product price-->
+            <!-- <span class="text-muted text-decoration-line-through">$20.00</span> -->
+            {{ item.price | currency }}
+        </div>
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">{{ item.category }}</li>
+    </ul>
+
+    <!-- Product actions-->
+    <!-- <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+<div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
+</div> -->
+</a>

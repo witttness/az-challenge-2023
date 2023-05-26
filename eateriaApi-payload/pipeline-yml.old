@@ -1,0 +1,123 @@
+# Microsoft Hosted Agents Image Available Images: https://docs.microsoft.com/en-us/azure/devops/pipelines/agents/hosted
+# Azure DevOps Pipelines YAML Schema: https://docs.microsoft.com/en-us/azure/devops/pipelines/yaml-schema
+
+trigger:
+- main
+
+pool:
+  name: 'Azure Pipelines'
+  vmImage: 'ubuntu-latest'
+
+# variables:
+#   - group: 'A Demo Group'
+#   - name: myVar
+#     value: myValue
+
+stages:
+- stage: build
+  displayName: 'Build'
+  jobs:
+  - job: build
+    displayName: 'Build the application'
+    steps:
+    - task: NodeTool@0
+      inputs:
+        versionSource: 'spec'
+        versionSpec: '18.x'
+      displayName: 'Install Node.js'
+
+    - script: |
+        npm install
+      displayName: 'npm install'
+
+    - script: |
+        npm run build
+      displayName: 'npm build'
+
+    - task: CopyFiles@2
+      inputs:
+        sourceFolder: '$(Build.SourcesDirectory)'
+        contents: |
+          dist/*
+        targetFolder: '$(Build.ArtifactStagingDirectory)'        
+      displayName: 'Copy project files'      
+
+    - task: ArchiveFiles@2
+      displayName: 'Archive dist Folder'
+      inputs:
+        rootFolderOrFile: 'dist'
+        includeRootFolder: true
+        archiveType: 'zip'
+        archiveFile: '$(Build.ArtifactStagingDirectory)/archive.zip'
+        replaceExistingArchive: false
+
+    #- task: ArchiveFiles@2
+    #  displayName: 'Archive node_modules Folder'
+    #  inputs:
+    #    rootFolderOrFile: 'node_modules'
+    #    includeRootFolder: true
+    #    archiveType: 'zip'
+    #    archiveFile: '$(Build.ArtifactStagingDirectory)/archive.zip'
+    #    replaceExistingArchive: false
+
+    #- task: ArchiveFiles@2
+    #  displayName: 'Archive package.json File'
+    #  inputs:
+    #    rootFolderOrFile: 'package.json'
+    #    includeRootFolder: false
+    #    archiveType: 'zip'
+    #    archiveFile: '$(Build.ArtifactStagingDirectory)/archive.zip'
+    #    replaceExistingArchive: false
+
+    - task: PublishPipelineArtifact@1
+      inputs:
+        artifactName: CafeterisCms
+        targetPath: '$(Build.ArtifactStagingDirectory)'
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)/archive.zip'
+        publishLocation: 'pipeline'
+      displayName: 'Publish npm artifact'
+
+- stage: 'Deploy'
+  displayName: 'Deploy the web application'
+  dependsOn: Build
+  jobs:
+  - deployment: Deploy
+    pool:
+      vmImage: 'ubuntu-latest'
+    environment: dev
+    variables:
+    - group: Release
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - download: current
+            artifact: CafeterisCms
+          - task: AzureWebApp@1
+            displayName: 'Azure App Service Deploy: website'
+            inputs:
+              azureSubscription: 'cafe-team1-cms-svc'
+              resourceGroupName: 'Team-1'
+              appName: 'eateria'
+              package: '$(Pipeline.Workspace)/CafeterisCms/*.zip'
+              #package: '$(Pipeline.Workspace)/CafeterisCms/dist/'
+
+# - stage: deploy
+#   displayName: 'Deploy to app services'
+#   jobs:
+#   - deployment: 'deployt'
+#     environment: 'dev'
+
+#     strategy:
+#       runOnce:
+#         deploy:
+#           steps:
+#           - download: 'CURRENT'
+#             displayName: 'Download Artifact: drop'
+#             artifact: drop
+#           - task: AzureRmWebAppDeployment@4
+#             displayName: 'Azure App Service Deploy: acgreleasedemo'
+#             inputs:
+#               azureSubscription: 'AcgReleaseDemo'
+#               WebAppName: acgreleasedemo
+#               packageForLinux: '$(Pipeline.Workspace)/drop/Miniboard.zip'

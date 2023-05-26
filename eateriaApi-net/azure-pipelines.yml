@@ -1,0 +1,97 @@
+# ASP.NET Core
+# Build and test ASP.NET Core projects targeting .NET Core.
+# Add steps that run tests, create a NuGet package, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
+
+trigger:
+- main
+
+#pool:
+#  vmImage: ubuntu-latest
+
+variables:
+  buildConfiguration: 'Release'
+
+
+stages:
+- stage: 'Build'
+  displayName: 'Build the web application'
+  jobs: 
+  - job: 'Build'
+    displayName: 'Build job'
+    pool:
+      vmImage: 'ubuntu-latest'
+      #demands:
+      #- npm
+
+    variables:
+      #wwwrootDir: 'Tailspin.SpaceGame.Web/wwwroot'
+      dotnetSdkVersion: '7.x'
+
+    steps:
+    - task: UseDotNet@2
+      inputs:
+        packageType: 'sdk'
+        version: '$(dotnetSdkVersion)' 
+
+    - task: DotNetCoreCLI@2
+      displayName: Build
+      inputs:
+        command: build
+        projects: '**/*.csproj'
+        arguments: '--configuration $(buildConfiguration)'
+
+    - task: DotNetCoreCLI@2
+      inputs:
+        command: publish
+        publishWebProjects: True
+        arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+        zipAfterPublish: True
+
+    - task: PublishBuildArtifacts@1
+      inputs:
+        pathtoPublish: '$(Build.ArtifactStagingDirectory)' 
+        artifactName: 'MenuApi'
+        
+
+- stage: 'Deploy'
+  displayName: 'Deploy the web application'
+  dependsOn: Build
+  jobs:
+  - deployment: Deploy
+    pool:
+      vmImage: 'ubuntu-latest'
+    environment: dev
+    variables:
+    - group: Release
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - download: current
+            artifact: MenuApi
+          - task: AzureWebApp@1
+            displayName: 'Azure App Service Deploy: website'
+            inputs:
+              azureSubscription: 'Launchpad (af6d8be5-fb4d-4397-bf59-7a6407620858)'
+              resourceGroup: 'Team-1'
+              resourceGroupName: 'Team-1'
+              appName: '$(WebAppName)'
+              package: '$(Pipeline.Workspace)/MenuApi/$(buildConfiguration)/*.zip'
+
+ #- task: AzureWebApp@1
+ #  inputs:
+ #    azureSubscription: 'Launchpad (af6d8be5-fb4d-4397-bf59-7a6407620858)'
+ #    appType: 'webAppLinux'
+ #    appName: 'cafeteria-team-one'
+ #    package: '$(System.DefaultWorkingDirectory)/**/*.zip'
+
+#steps:
+#- script: dotnet restore
+#  displayName: 'dotnet restore $(buildConfiguration)'
+
+#- script: dotnet build --configuration $(buildConfiguration)
+#  displayName: 'dotnet build $(buildConfiguration)'
+
+#- script: dotnet publish --configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)
+#  displayName: 'dotnet publish $(buildConfiguration)'
